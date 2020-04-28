@@ -1,4 +1,5 @@
 import DOMPurify from 'dompurify'
+import md5 from 'md5'
 
 export default class Chat {
     constructor(){
@@ -49,6 +50,7 @@ export default class Chat {
     showChat(){
         if(!this.openedYet){
             this.openConnection()
+            this.displayMessageFromServer({username: "admin", avatar: `https://gravatar.com/avatar/${md5("jeeadityajha1@gmail.com")}?s=256`, occupation:"Site Admin", message: "This is the Open chat, you may participate in discussion or start one of your own, language decency is expected."})
             this.openedYet = true
         }
         this.chatWrapper.classList.add("chat--visible")
