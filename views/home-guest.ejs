@@ -1,0 +1,71 @@
+<%- include('includes/header') %>
+<!-- header ends here -->
+
+<div class="container py-md-5">
+
+  <%- include('includes/flash') %>
+
+  <div class="row align-items-center">
+    <div class="col-lg-7 py-3 py-md-5">
+
+      <h1 class="display-3">We Demand Valid Informations!</h1>      
+      <p class="lead text-muted">Are you sick of fake news &ldquo;shared&rdquo; misinformations that are flying out there? Or do you have something important to share? We believe getting the correct information from only the sources you trust and communicating from experts might help!<br>Let us all say - No Corona !</p>
+      <hr width="50%">
+
+      
+      <div class="list-group-item ">
+      <div class="text-center">
+          <H5>COVID-19 TRACKER INDIA</H5>[Updated: <%= cases.updated %> ]
+      </div>
+      <div class="row container py-3">
+        <div class="list-group-item col-lg-3 col-sm-3 col-xs-6 text-muted ">Cases : <div class="text-center" style="color: #ff4d4d">[+<%= cases.new_cases %>]</div><div class="text-center"><h4 style="color:red"><b><%= cases.total_cases %></b></h4></div></div>
+        <div class="list-group-item col-lg-3 col-sm-3 col-xs-6 text-muted ">Active :<div class="text-center" style="color:rgb(25, 152, 184)">[+0]</div><div class="text-center"> <h4 style="color:blue"><b><%= cases.active %></b></h4></div></div>
+        <div class="list-group-item col-lg-3 col-sm-3 col-xs-6 text-muted ">Recovered :<div class="text-center" style="color:#15e825">[+<%= cases.recovered_new %>]</div><div class="text-center"><h4 style="color:green"><b><%= cases.recovered_total %></b></h4></div></div>
+        <div class="list-group-item col-lg-3 col-sm-3 col-xs-6 text-muted ">Deceased :<div class="text-center" style="color:grey">[+<%= cases.death_new %>]</div><div class="text-center"><h4 style="color:grey"><b><%= cases.death_total %></b></h4></div> </div>
+      </div>
+      <div class="text-center">
+        [Source: <a href="https://www.covid19india.org">covid19india.org</a> ]
+    </div>
+    </div>
+
+    
+    </div>
+    <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
+      <form action="/register" method="POST" id="registration-form">
+
+        <% regErrors.forEach(function(message){%>
+          <div class="alert alert-danger text-center"><%= message %> </div>
+        <% }) %>
+        <h5 class="display-4">New User? Sign Up Now!</h5>
+          <div class="form-group">
+            <label for="username-register" class="text-muted mb-1"><small>Username</small></label>
+            <input name="username" id="username-register" class="form-control" type="text" placeholder="Pick a username" autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="occupation-register" class="text-muted mb-1"><small>Occupation</small></label>
+            <input name="occupation" id="occupation-register" class="form-control" type="text" placeholder="eg. Doctor, Media House, Govt. etc.">
+          </div>
+
+          <div class="form-group">
+            <label for="email-register" class="text-muted mb-1"><small>Email</small></label>
+            <input name="email" id="email-register" class="form-control" type="text" placeholder="you@example.com" autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="password-register" class="text-muted mb-1"><small>Password</small></label>
+            <input name="password" id="password-register" class="form-control" type="password" placeholder="Create a password">
+          </div>
+          <div class="">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          </div>
+          
+          <button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign Up</button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<!-- footer begins -->
+<%- include('includes/footer'); %>

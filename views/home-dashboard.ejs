@@ -1,0 +1,50 @@
+<%- include('includes/header') %>
+  <!-- header ends here -->
+  
+  <div class="container py-md-5 container--narrow">
+    <%- include('includes/flash') %>
+    
+    
+      <div class="row container py-3 text-muted">
+        <h5 style="text-align: center;">
+         COVID-19 LIVE STATUS FOR INDIA [Updated: <%= cases.updated %>]
+        </h5>
+        <div class="col-lg-3 col-sm-3 col-xs-6 ">Cases : <span style="color: #ff4d4d">[+<%= cases.new_cases %>]</span><div class="text-center"><h4 style="color:red"><b><%= cases.total_cases %></b></h4></div></div>
+        <div class="col-lg-3 col-sm-3 col-xs-6 ">Active :<span class="text-center" style="color:rgb(25, 152, 184)">[+0]</span><div class="text-center"> <h4 style="color:blue"><b><%= cases.active %></b></h4></div></div>
+        <div class="col-lg-3 col-sm-3 col-xs-6 ">Recovery :<span class="text-center" style="color:#15e825">[+<%= cases.recovered_new %>]</span><div class="text-center"><h4 style="color:green"><b><%= cases.recovered_total %></b></h4></div></div>
+        <div class="col-lg-3 col-sm-3 col-xs-6 ">Deceased :<span class="text-center" style="color:grey">[+<%= cases.death_new %>]</span><div class="text-center"><h4 style="color:grey"><b><%= cases.death_total %></b></h4></div> </div>
+      </div>
+
+      <hr>
+    
+    
+    <% if(posts.length) { %>
+      <h2 class="text-center mb-4"><strong>The Latest From Those You Follow</strong></h2>
+      <div class="list-group">
+        <% posts.forEach(function(post){ 
+          if(post.author.username == "admin"){%>
+          <a href="/post/<%= post._id %>" class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" src="<%= post.author.avatar  %>">
+            <strong><%=post.title  %></strong> <span class="text-muted small">by <%= post.author.username %> <i>(<%= post.author.occupation %>)</i> on <%= post.createdDate.getMonth()+1 %>/<%= post.createdDate.getDate() %>/<%= post.createdDate.getFullYear() %></span>
+          </a>
+        <% }}) %>
+      </div>
+      <div class="list-group">
+        <% posts.forEach(function(post){ %>
+          <a href="/post/<%= post._id %>" class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" src="<%= post.author.avatar  %>">
+            <strong><%=post.title  %></strong> <span class="text-muted small">by <%= post.author.username %> <i>(<%= post.author.occupation %>)</i> on <%= post.createdDate.getMonth()+1 %>/<%= post.createdDate.getDate() %>/<%= post.createdDate.getFullYear() %></span>
+          </a>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="text-center">
+        <h2>Hello <strong><%= user.username %></strong>, your feed is empty.</h2>
+        <p class="lead text-muted">Your feed displays the latest posts from the people you follow. If you don&rsquo;t have any friends to follow that&rsquo;s okay; you can use the &ldquo;Search&rdquo; feature in the top menu bar to find content written by people with similar interests and then follow them.</p>
+      </div>    
+    <% } %>
+
+  </div>
+  
+  <!-- footer begins -->
+  <%- include('includes/footer') %>
