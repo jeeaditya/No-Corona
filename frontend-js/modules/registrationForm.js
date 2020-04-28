@@ -123,7 +123,7 @@ export default class RegistrationForm {
     }
 
     occupationImmediately(){
-        if(this.occupation.value != "" && !/^([a-zA-Z]+)$/.test(this.occupation.value)) {
+        if(this.occupation.value != "" && !/^([a-zA-Z\s]+)$/.test(this.occupation.value)) {
             this.showValidationError(this.occupation, "Enter valid Occupation/Authority")
         }
 
